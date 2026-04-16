@@ -1,0 +1,32 @@
+<h1>Pets</h1>
+
+<div class="container mt-4">
+  <h1>Pet Details</h1>
+  
+  <div class="card mb-4 shadow-sm">
+    <div class="card-body">
+      <h4 class="card-title"><%= @pet.name %></h4>
+      <p class="card-text"><strong>Species:</strong> <%= @pet.species %></p>
+      <p class="card-text"><strong>Breed:</strong> <%= @pet.breed %></p>
+      <p class="card-text"><strong>Date of Birth:</strong> <%= @pet.date_of_birth&.strftime("%B %d, %Y") %>
+      <p class="card-text"><strong>Weight:</strong> <%= @pet.weight %> kg</p>
+      <p class="card-text">
+        <strong>Owner:</strong> 
+        <%= link_to "#{@pet.owner.first_name} #{@pet.owner.last_name}", owner_path(@pet.owner), class: "text-decoration-none" %>
+      </p>
+    </div>
+  </div>
+
+  <h3>Appointments</h3>
+  <ul class="list-group mb-4">
+    <% @pet.appointments.each do |appointment| %>
+      <li class="list-group-item">
+        <%= link_to appointment.date&.strftime("%B %d, %Y - %H:%M"), appointment_path(appointment), class: "text-decoration-none fw-bold" %>
+        with Dr. <%= appointment.vet.last_name %> 
+        <span class="badge bg-primary ms-2"><%= appointment.status.to_s.titleize %></span>
+      </li>
+    <% end %>
+  </ul>
+
+  <%= link_to "Back to Pets", pets_path, class: "btn btn-secondary" %>
+</div>

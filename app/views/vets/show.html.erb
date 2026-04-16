@@ -1,0 +1,26 @@
+<h1>Vets</h1>
+
+<div class="container mt-4">
+  <h1>Veterinarian Details</h1>
+  
+  <div class="card mb-4 shadow-sm">
+    <div class="card-body">
+      <h4 class="card-title">Dr. <%= @vet.first_name %> <%= @vet.last_name %></h4>
+      <p class="card-text"><strong>Email:</strong> <%= @vet.email %></p>
+      <p class="card-text"><strong>Phone:</strong> <%= @vet.phone %></p>
+      <p class="card-text"><strong>Specialization:</strong> <%= @vet.specialization %></p>
+    </div>
+  </div>
+
+  <h3>Appointments</h3>
+  <ul class="list-group mb-4">
+    <% @vet.appointments.each do |appointment| %>
+      <li class="list-group-item">
+        <%= link_to appointment.date&.strftime("%B %d, %Y - %H:%M"), appointment_path(appointment), class: "text-decoration-none fw-bold" %>
+        - Pet: <%= link_to appointment.pet.name, pet_path(appointment.pet), class: "text-decoration-none" %>
+      </li>
+    <% end %>
+  </ul>
+
+  <%= link_to "Back to Vets", vets_path, class: "btn btn-secondary" %>
+</div>

@@ -1,0 +1,25 @@
+<h1>Owners</h1>
+
+<div class="container mt-4">
+  <h1>Owner Details</h1>
+  
+  <div class="card mb-4 shadow-sm">
+    <div class="card-body">
+      <h4 class="card-title"><%= @owner.first_name %> <%= @owner.last_name %></h4>
+      <p class="card-text"><strong>Email:</strong> <%= @owner.email %></p>
+      <p class="card-text"><strong>Phone:</strong> <%= @owner.phone %></p>
+      <p class="card-text"><strong>Address:</strong> <%= @owner.address %></p>
+    </div>
+  </div>
+
+  <h3>Pets</h3>
+  <ul class="list-group mb-4">
+    <% @owner.pets.each do |pet| %>
+      <li class="list-group-item">
+        <%= link_to pet.name, pet_path(pet), class: "text-decoration-none fw-bold" %> - <%= pet.species %> (<%= pet.breed %>)
+      </li>
+    <% end %>
+  </ul>
+
+  <%= link_to "Back to Owners", owners_path, class: "btn btn-secondary" %>
+</div>
